@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 21:48:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/02/08 23:09:37 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/02/09 13:17:58 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static	void	start_game(t_fil *flr, int i)
 		free(flr->map);
 		free(flr->piece);
 		free(ln);
-		ft_printf("%d %d\n", flr->x[5], flr->y[5]);
+		ft_printf("%d %d\n", flr->y[5], flr->x[5]);
 	}
 }
 

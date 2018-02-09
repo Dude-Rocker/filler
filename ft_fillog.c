@@ -3,18 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fillog.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:22:06 by anonymous         #+#    #+#             */
-/*   Updated: 2018/02/08 23:09:42 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/02/09 18:36:16 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static	void	targcoord(t_fil *flr, int i)
+static	void	targcoord(t_fil *flr, int i, int xy)
 {
+	int			j;
 
+	j = 0;
+	if (xy[0] && xy[1])
+		j = 3;
+	else if (xy[0])
+		j = 1;
+	else if (xy[1])
+		j = 2;
+}
+
+static	void	srcclosed(char **s, char c, int *i)
+{
+	int			j;
+	int			k;
+
+	i[0] = 0;
+	i[1] = 0;
+	j = -1;
+	k = -1;
+	while (s[0][++j])
+		if (s[0][j] == c)
+			i[0] = 1;
+	j--;
+	while (s[++k])
+		if (s[k][j] == c)
+			i[0] = 1;
+	j = -1;
+	k--;
+	while (s[k][++j])
+		if (s[k][j] == c)
+			i[1] = 1;
+	k = -1;
+	while (s[++k])
+		if (s[k][0] == c)
+			i[1] = 1;
 }
 
 static	void	whtfigur(char **s, int i, int j, int *xy)
@@ -94,5 +129,6 @@ void			ft_fillog(t_fil *flr, int i, int j)
 		h = 2;
 	else
 		h = 0;
-	targcoord(flr, h);
+	srcclosed(flr->map, flr->me, xy);
+	targcoord(flr, h, xy);
 }
