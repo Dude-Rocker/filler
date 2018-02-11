@@ -5,32 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/07 21:48:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/02/09 13:17:58 by vgladush         ###   ########.fr       */
+/*   Created: 2018/02/07 21:48:14 by vgladush          #+#    #+#             */
+/*   Updated: 2018/02/12 00:12:01 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+static	void	srcplace(t_fil *flr, int i, int j)
+{
+	while (flr->map[i])
+	{
+		while (flr->map[i][j])
+		{
+			if (flr->map[i][j] == 'X')
+			{
+				flr->y[12] = 1;
+				return ;
+			}
+			else if (flr->map[i][j] == 'O')
+			{
+				flr->x[12] = 1;
+				return ;
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
 
 static	void	crtpiece(t_fil *flr, char *ln)
 {
 	int			i;
 
 	i =	6;
-	flr->y[5] = ft_atoi(ln + i);
+	flr->y[9] = ft_atoi(ln + i);
 	while (ln[i] && ln[i] != ' ')
 		i++;
-	flr->x[5] = ft_atoi(ln + i);
-	if (!(flr->piece = (char **)malloc(sizeof(char *) * flr->y[5] + 1)))
+	flr->x[9] = ft_atoi(ln + i);
+	if (!(flr->pc = (char **)malloc(sizeof(char *) * flr->y[9] + 1)))
 		return ;
 	i = 0;
-	while (i < flr->y[5])
+	while (i < flr->y[9])
 	{
 		get_next_line(0, &ln);
-		flr->piece[i++] = ft_strdup(ln);
+		flr->pc[i++] = ft_strdup(ln);
 		free(ln);
 	}
-	flr->piece[i] = 0;
+	flr->pc[i] = 0;
 }
 
 static	void	crtmap(t_fil *flr, char *ln)
@@ -54,6 +77,8 @@ static	void	crtmap(t_fil *flr, char *ln)
 		free(ln);
 	}
 	flr->map[i] = 0;
+	if (!flr->y[12] && !flr->x[12])
+		srcplace(flr, 0, 0);
 }
 
 static	void	start_game(t_fil *flr, int i)
@@ -69,19 +94,17 @@ static	void	start_game(t_fil *flr, int i)
 			return ;
 		}
 		i = 0;
-		while (i < 6 && !(flr->x[i] = 0))
+		while (i < 12 && !(flr->x[i] = 0))
 			flr->y[i++] = 0;
-		flr->x[3] = 1000;
-		flr->y[4] = 1000;
 		crtmap(flr, ln);
 		free(ln);
 		get_next_line(0, &ln);
 		crtpiece(flr, ln);
 		ft_fillog(flr, 0, 0);
 		free(flr->map);
-		free(flr->piece);
+		free(flr->pc);
 		free(ln);
-		ft_printf("%d %d\n", flr->y[5], flr->x[5]);
+		ft_printf("%d %d\n", flr->x[11], flr->y[11]);
 	}
 }
 
@@ -94,16 +117,12 @@ int				main(void)
 	if ((int)ft_strlen(ln) < 10 || ft_atoi(ln + 10) < 1 || ft_atoi(ln + 10) > 2)
 		exit(ft_printf("Bad player info\n"));
 	if (ft_atoi(ln + 10) == 1)
-	{
-		flr.me = 'X';
-		flr.en = 'O';
-	}
-	else
-	{
 		flr.me = 'O';
-		flr.en = 'X';
-	}
+	else
+		flr.me = 'X';
 	free(ln);
+	flr.y[12] = 0;
+	flr.x[12] = 0;
 	start_game(&flr, 0);
 	return (0);
 }

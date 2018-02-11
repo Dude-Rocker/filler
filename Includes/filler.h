@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 14:37:27 by vgladush          #+#    #+#             */
-/*   Updated: 2018/02/08 23:10:03 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/02/12 00:18:48 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@
 
 typedef	struct	s_fil
 {
-	char		en;
 	char		me;
-	int			x[6];
-	int			y[6];
+	int			x[13];
+	int			y[13];
 	char		**map;
-	char		**piece;
+	char		**pc;
 }				t_fil;
 
 void			ft_fillog(t_fil *flr, int i, int j);
+void			ft_targcoord(t_fil *flr, int h, int i);
 
 #endif
+
+// 1 2 3 4 O right down left up
+// 5 6 7 8 X -----

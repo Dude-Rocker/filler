@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+         #
+#    By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/02/06 14:24:08 by vgladush          #+#    #+#              #
-#    Updated: 2018/02/08 23:10:00 by anonymous        ###   ########.fr        #
+#    Created: 2018/02/07 21:48:14 by vgladush          #+#    #+#              #
+#    Updated: 2018/02/12 00:18:40 by vgladush         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ INC		= $(addprefix -I, $(INC_DIR))
 
 OBJS	= $(SRCS:.c=.o)
 
-SRCS	= filler.c ft_fillog.c
+SRCS	= filler.c ft_fillog.c ft_targcoord.c
 
 all: $(NAME)
 
