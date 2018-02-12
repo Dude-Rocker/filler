@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 21:48:14 by vgladush          #+#    #+#             */
-/*   Updated: 2018/02/12 00:12:01 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/02/12 16:10:25 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static	void	crtpiece(t_fil *flr, char *ln)
 {
 	int			i;
 
-	i =	6;
+	i = 6;
 	flr->y[9] = ft_atoi(ln + i);
 	while (ln[i] && ln[i] != ' ')
 		i++;
@@ -60,7 +60,7 @@ static	void	crtmap(t_fil *flr, char *ln)
 {
 	int			i;
 
-	i =	8;
+	i = 8;
 	flr->y[0] = ft_atoi(ln + i);
 	while (ln[i] && ln[i] != ' ')
 		i++;
@@ -104,7 +104,7 @@ static	void	start_game(t_fil *flr, int i)
 		free(flr->map);
 		free(flr->pc);
 		free(ln);
-		ft_printf("%d %d\n", flr->x[11], flr->y[11]);
+		ft_printf("%d %d\n", flr->y[11], flr->x[11]);
 	}
 }
 

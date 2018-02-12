@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:22:06 by vgladush          #+#    #+#             */
-/*   Updated: 2018/02/11 23:58:44 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/02/12 17:00:10 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,6 @@ static	void	srcclosed(char **s, char c, t_fil *flr)
 	while (s[++k])
 		if (s[k][0] == c)
 			flr->y[10] = 1;
-}
-
-static	void	whtfigur(char **s, int i, int j, t_fil *flr)
-{
-	while (s[i])
-	{
-		while (s[i][j])
-		{
-			if (s[i][j] == '*' && (flr->x[9] += 1))
-				break ;
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	i = 0;
-	while (s[i][j])
-	{
-		while (s[i])
-		{
-			if (s[i][j] == '*' && (flr->y[9] += 1))
-				break ;
-			i++;
-		}
-		i = 0;
-		j++;
-	}
 }
 
 static	void	scrdsec(t_fil *flr, int i, int j, char c)
@@ -121,8 +94,6 @@ static	void	srccrd(t_fil *flr, int i, int j, char c)
 
 void			ft_fillog(t_fil *flr, int i, int j)
 {
-	int			h;
-
 	flr->x[7] = 1000;
 	flr->y[8] = 1000;
 	flr->x[3] = 1000;
@@ -138,12 +109,6 @@ void			ft_fillog(t_fil *flr, int i, int j)
 		i++;
 	}
 	whtfigur(flr->pc, 0, 0, flr);
-	if (flr->x[9] > 1 && flr->y[9] > 1)
-		h = 0;
-	else if (flr->x[9] > 1)
-		h = 1;
-	else
-		h = 2;
 	srcclosed(flr->map, flr->me, flr);
-	ft_targcoord(flr, h, 0);
+	ft_targcoord(flr, 0, 0);
 }
