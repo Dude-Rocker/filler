@@ -6,11 +6,39 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:22:06 by vgladush          #+#    #+#             */
-/*   Updated: 2018/02/12 17:00:10 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/02/13 00:14:07 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+int				check_coord(t_fil *f, int x, int y, int t)
+{
+	int			i;
+	int			j;
+
+	i = 0;
+	while (f->pc[i])
+	{
+		j = 0;
+		while (f->pc[i][j])
+		{
+			if (f->pc[i][j] != '.' && (t > 1 || y > f->y[0] - 1 || x < 0
+				|| y < 0 || x > f->x[0] - 1 || (f->map[y][x] != '.' &&
+				f->map[y][x] != f->me && f->map[y][x] != f->me + 32)))
+				return (0);
+			else if (f->pc[i][j] != '.' && (f->map[y][x] == f->me ||
+				f->map[y][x] == f->me + 32))
+				t++;
+			j++;
+			x++;
+		}
+		x -= j;
+		i++;
+		y++;
+	}
+	return ((t == 1 ? 1 : 0));
+}
 
 static	void	srcclosed(char **s, char c, t_fil *flr)
 {
@@ -108,7 +136,6 @@ void			ft_fillog(t_fil *flr, int i, int j)
 		}
 		i++;
 	}
-	whtfigur(flr->pc, 0, 0, flr);
 	srcclosed(flr->map, flr->me, flr);
 	ft_targcoord(flr, 0, 0);
 }

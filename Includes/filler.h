@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 14:37:27 by vgladush          #+#    #+#             */
-/*   Updated: 2018/02/12 16:59:53 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/02/13 19:11:51 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@ typedef	struct	s_fil
 
 void			ft_fillog(t_fil *flr, int i, int j);
 void			ft_targcoord(t_fil *f, int i, int r);
+int				check_coord(t_fil *f, int x, int y, int t);
+void			crcd_left_dw(t_fil *f, int x, int y);
+void			crcd_up_rg(t_fil *f, int x, int y);
+void			crcd_down_lf(t_fil *f, int x, int y);
+void			crcd_right_up(t_fil *f, int x, int y);
+void			crcd_left_up(t_fil *f, int x, int y);
 
 #endif
 
 // 1 2 3 4 O right down left up
 // 5 6 7 8 X -----
 // 1 2 3 4 down right left up
-
-// 4 - 5 (8 - 1) = 2
-// 3 - 6 (7 - 2) = 9

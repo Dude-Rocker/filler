@@ -6,7 +6,7 @@
 #    By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 21:48:14 by vgladush          #+#    #+#              #
-#    Updated: 2018/02/12 15:17:38 by vgladush         ###   ########.fr        #
+#    Updated: 2018/02/13 19:11:38 by vgladush         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ INC		= $(addprefix -I, $(INC_DIR))
 
 OBJS	= $(SRCS:.c=.o)
 
-SRCS	= filler.c ft_fillog.c ft_targcoord.c
+SRCS	= filler.c ft_fillog.c ft_targcoord.c ft_finfil.c
 
 all: $(NAME)
 
