@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:22:06 by vgladush          #+#    #+#             */
-/*   Updated: 2018/02/14 22:38:07 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/02/15 22:15:54 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static	void	scrdsec(t_fil *flr, int i, int j, char c)
 
 static	void	srccrd(t_fil *flr, int i, int j, char c)
 {
-	if (c == 'o' || c == 'O')
+	if (c == flr->me || c == flr->me + 32)
 	{
 		if (flr->x[1] <= j)
 		{
@@ -122,10 +122,6 @@ static	void	srccrd(t_fil *flr, int i, int j, char c)
 
 void			ft_fillog(t_fil *flr, int i, int j)
 {
-	int			r[2];
-
-	r[0] = 0;
-	r[1] = 0;
 	flr->x[7] = 1000;
 	flr->y[8] = 1000;
 	flr->x[3] = 1000;
@@ -141,5 +137,5 @@ void			ft_fillog(t_fil *flr, int i, int j)
 		i++;
 	}
 	srcclosed(flr->map, flr->me, flr);
-	ft_targcoord(flr, 0, r);
+	ft_targcoord(flr, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 15:22:11 by vgladush          #+#    #+#             */
-/*   Updated: 2018/02/15 13:59:41 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/02/15 22:55:45 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,8 @@ static	void	crcd_right_dw(t_fil *f, int x, int y)
 	}
 }
 
-static	void	choicestrat(t_fil *f, int i, int *r)
+static	void	choicestrat(t_fil *f, int i)
 {
-	*r = (f->me == 'O' ? f->y[3] - f->y[6] : f->y[7] - f->y[2]);
-	r[1] = (f->me == 'O' ? f->x[3] - f->x[6] : f->x[7] - f->x[2]);
-	if (i == 3 && *r < 4)
-		i = (*r < 1 && r[1] < 3 ? 5 : 7);
-	r[1] = (f->me == 'O' ? f->y[4] - f->y[5] : f->y[8] - f->y[1]);
-	*r = (f->me == 'O' ? f->x[4] - f->x[5] : f->x[8] - f->x[1]);
-	if (i == 4 && *r < 4 && !f->x[12])
-		i = (*r < 1 && r[1] < 3 ? 6 : 8);
 	if (i == 1)
 		crcd_down_rg(f, 1, 1);
 	else if (i == 2)
@@ -99,29 +91,23 @@ static	void	choicestrat(t_fil *f, int i, int *r)
 		crcd_up_rg(f, 1, 1);
 }
 
-void			ft_targcoord(t_fil *f, int i, int *r)
+void			ft_targcoord(t_fil *f, int i)
 {
-	*r = ((f->x[13] && f->me == 'O') || (f->y[13] && f->me == 'X') ? 1 : 0);
-	if (*r && (f->x[12] || (f->me == 'X' && f->y[4] - f->y[5] > f->x[3] -
-		f->x[6]) || (f->me == 'O' && f->y[8] - f->y[1] > f->x[7] - f->x[2])))
-		i = 1;
-	else if (*r)
-		i = 2;
-	else if (!*r && !f->y[10] && !f->y[12] && ((f->me == 'O' && f->x[4] -
-		f->x[5] > f->y[3] - f->y[6]) || (f->me == 'X' && f->x[8] - f->x[1]
-		> f->y[7] - f->y[2])))
-		i = 3;
+	if (f->x[13])
+		i = (f->x[12] || (f->y[8] - f->y[1] > f->x[7] - f->x[2]) ? 1 : 2);
 	else
-		i = 4;
-	*r = (f->me == 'X' ? f->x[3] - f->x[6] : f->x[7] - f->x[2]);
-	r[1] = (f->me == 'X' ? f->y[3] - f->y[6] : f->y[7] - f->y[2]);
-	if (i == 1 && !f->x[12] && (f->y[10] || (f->y[12] && r[1] < 3 &&  *r < 3)))
+		i = (!f->y[10] && !f->y[12] && f->x[4] - f->x[5] > f->y[3] - f->y[6]
+		&& f->x[3] - f->x[6] > -2 && f->y[4] - f->y[8] < 8 ? 3 : 4);
+	if (i == 1 && !f->x[12] && (f->y[10] || (f->y[12] && f->y[7] - f->y[2]
+		< 3 &&  f->x[7] - f->x[2] < 3)))
 		i = 2;
-	if (i == 1 && *r < 4 && !f->y[10] && (!f->y[12] || (f->y[12] && r[1] > 3)))
-		i = ((r[1] < 3 && *r < 1) ? 7 : 5);
-	*r = (f->me == 'O' ? f->y[8] - f->y[1] : f->y[4] - f->y[5]);
-	r[1] = (f->me == 'O' ? f->x[8] - f->x[1] : f->x[4] - f->x[5]);
-	if (i == 2 && *r < 4)
-		i = ((*r < 1 && r[1] < 3) ? 8 : 6);
-	choicestrat(f, i, r);
+	if (i == 1 && f->x[7] - f->x[2] < 3 && !f->y[10] && !f->y[12])
+		i = ((f->y[7] - f->y[2] < 3 && f->x[7] - f->x[2] < 1) ? 7 : 5);
+	if (i == 2 && f->x[8] - f->x[1] < 3)
+		i = ((f->x[8] - f->x[1] < 1 && f->y[8] - f->y[1] < 3) ? 8 : 6);
+	if (i == 3 && f->y[3] - f->y[6] < 3)
+		i = (f->y[3] - f->y[6] < 1 && f->x[3] - f->x[6] < 3 ? 5 : 7);
+	if (i == 4 && f->x[4] - f->x[5] < 3 && !f->x[12])
+		i = (f->x[4] - f->x[5] < 1 && f->y[4] - f->y[5] < 3 ? 6 : 8);
+	choicestrat(f, i);
 }

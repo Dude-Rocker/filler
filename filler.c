@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 21:48:14 by vgladush          #+#    #+#             */
-/*   Updated: 2018/02/14 21:43:59 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/02/15 21:28:57 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@ static	void	srcplace(t_fil *flr, int i, int j)
 	{
 		while (flr->map[i][j])
 		{
-			if (flr->map[i][j] == 'X' || flr->map[i][j] == 'x')
-			{
-				flr->y[13] = 1;
-				return ;
-			}
-			else if (flr->map[i][j] == 'O' || flr->map[i][j] == 'o')
+			if (flr->map[i][j] == flr->me || flr->map[i][j] == flr->me + 32)
 			{
 				flr->x[13] = 1;
 				return ;
 			}
-			j++;
+			else if (flr->map[i][j] == '.')
+				j++;
+			else
+			{
+				flr->y[13] = 1;
+				return ;
+			}
 		}
 		j = 0;
 		i++;
