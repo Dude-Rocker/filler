@@ -6,7 +6,7 @@
 #    By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 21:48:14 by vgladush          #+#    #+#              #
-#    Updated: 2018/02/13 19:11:38 by vgladush         ###   ########.fr        #
+#    Updated: 2018/02/15 15:12:41 by vgladush         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,8 +42,9 @@ clean:
 	@make -C $(LB_PATH) clean
 	@rm -rf $(OBJ_DIR)
 
-fclean: clean
+fclean:
 	@make -C $(LB_PATH) fclean
+	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
 	@echo $(NAME) "deleted"
 

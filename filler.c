@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 21:48:14 by vgladush          #+#    #+#             */
-/*   Updated: 2018/02/13 00:07:46 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/02/14 21:43:59 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static	void	srcplace(t_fil *flr, int i, int j)
 		{
 			if (flr->map[i][j] == 'X' || flr->map[i][j] == 'x')
 			{
-				flr->y[12] = 1;
+				flr->y[13] = 1;
 				return ;
 			}
 			else if (flr->map[i][j] == 'O' || flr->map[i][j] == 'o')
 			{
-				flr->x[12] = 1;
+				flr->x[13] = 1;
 				return ;
 			}
 			j++;
@@ -77,7 +77,7 @@ static	void	crtmap(t_fil *flr, char *ln)
 		free(ln);
 	}
 	flr->map[i] = 0;
-	if (!flr->y[12] && !flr->x[12])
+	if (!flr->y[13] && !flr->x[13])
 		srcplace(flr, 0, 0);
 }
 
@@ -94,7 +94,7 @@ static	void	start_game(t_fil *flr, int i)
 			return ;
 		}
 		i = 0;
-		while (i < 12 && !(flr->x[i] = 0))
+		while (i < 13 && !(flr->x[i] = 0))
 			flr->y[i++] = 0;
 		crtmap(flr, ln);
 		free(ln);
@@ -121,8 +121,8 @@ int				main(void)
 	else
 		flr.me = 'X';
 	free(ln);
-	flr.y[12] = 0;
-	flr.x[12] = 0;
+	flr.y[13] = 0;
+	flr.x[13] = 0;
 	start_game(&flr, 0);
 	return (0);
 }

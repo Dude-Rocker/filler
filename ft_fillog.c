@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:22:06 by vgladush          #+#    #+#             */
-/*   Updated: 2018/02/13 00:14:07 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/02/14 22:38:07 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static	void	srcclosed(char **s, char c, t_fil *flr)
 	j--;
 	while (s[++k])
 		if (s[k][j] == c)
-			flr->x[10] = 1;
+			flr->x[12] = 1;
 	j = -1;
 	k--;
 	while (s[k][++j])
@@ -62,7 +62,7 @@ static	void	srcclosed(char **s, char c, t_fil *flr)
 	k = -1;
 	while (s[++k])
 		if (s[k][0] == c)
-			flr->y[10] = 1;
+			flr->y[12] = 1;
 }
 
 static	void	scrdsec(t_fil *flr, int i, int j, char c)
@@ -122,6 +122,10 @@ static	void	srccrd(t_fil *flr, int i, int j, char c)
 
 void			ft_fillog(t_fil *flr, int i, int j)
 {
+	int			r[2];
+
+	r[0] = 0;
+	r[1] = 0;
 	flr->x[7] = 1000;
 	flr->y[8] = 1000;
 	flr->x[3] = 1000;
@@ -137,5 +141,5 @@ void			ft_fillog(t_fil *flr, int i, int j)
 		i++;
 	}
 	srcclosed(flr->map, flr->me, flr);
-	ft_targcoord(flr, 0, 0);
+	ft_targcoord(flr, 0, r);
 }
