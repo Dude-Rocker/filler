@@ -6,7 +6,7 @@
 #    By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 21:48:14 by vgladush          #+#    #+#              #
-#    Updated: 2018/02/15 22:52:18 by vgladush         ###   ########.fr        #
+#    Updated: 2018/03/15 02:49:30 by vgladush         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ $(NAME): $(OBJ)
 	@make -C $(LB_PATH)
 	@gcc -o $(NAME) $(OBJ) $(LB_LINK)
 	@echo $(NAME) "ready"
+	@$(GC_FLGS) ft_visual.c $(INC) $(LB_LINK) -o Visual
+	@echo "Visual ready"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
@@ -46,6 +48,8 @@ fclean:
 	@make -C $(LB_PATH) fclean
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
+	@rm -f Visual
 	@echo $(NAME) "deleted"
+	@echo Visual "deleted"
 
 re: fclean all
