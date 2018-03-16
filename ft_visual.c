@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_printf.h"
 
 static	char	*fil_players(char *ln, int i, char *pl1, int j)
 {
@@ -24,7 +23,7 @@ static	char	*fil_players(char *ln, int i, char *pl1, int j)
 	while (ln[i] && ln[i] != '.')
 		pl1[j++] = ln[i++];
 	pl1[j] = '\n';
-	pl1 = ft_joinfree("\x1B[32mplayer1: 🌲 ", pl1, 2);
+	pl1 = ft_joinfree("\x1B[32mplayer1: 🌲  ", pl1, 2);
 	free(ln);
 	get_next_line(0, &ln);
 	free(ln);
@@ -37,19 +36,20 @@ static	char	*fil_players(char *ln, int i, char *pl1, int j)
 	j = 0;
 	while (ln[i] && ln[i] != '.')
 		pl2[j++] = ln[i++];
-	pl2 = ft_joinfree("\x1B[31mplayer2: 🔥 ", pl2, 2);
+	pl2 = ft_joinfree("\x1B[31mplayer2: 🔥  ", pl2, 2);
 	free(ln);
 	return (ft_joinfree(pl1, pl2, 2));
 }
 
-static	void	ft_vis_map(char *ln, char **hd, char *pl, int i)
+static	void	ft_vis_map(char *ln, char *pl, int i, int j)
 {
 	if (ln[0] != 'P' || ln[3] != 't')
 		return ;
+	if (j)
+		usleep(j);
+	else
+		read(1, 0, 1);
 	system("clear");
-	ft_printf("\x1B[36m");
-	while (hd[i])
-		ft_printf("%s\n", hd[i++]);
 	ft_printf("%s\n\n", pl);
 	get_next_line(0, &ln);
 	while (*ln != 'P')
@@ -69,11 +69,14 @@ static	void	ft_vis_map(char *ln, char **hd, char *pl, int i)
 		get_next_line(0, &ln);
 	}
 }
+
 static	void	put_res(char *pl, int i, int j, int z)
 {
 	int			o;
 	int			p;
 
+	p = 0;
+	o = 0;
 	while (pl[o++] != ' ')
 		;
 	while (pl[p] != '\n')
@@ -84,7 +87,6 @@ static	void	put_res(char *pl, int i, int j, int z)
 	else
 		ft_printf("\n%s%s %swon with %d points (%s%.*s %s%d)\n", "\x1B[31m",
 			pl + z, "\x1B[33m", j, "\x1B[32m", p - o, pl + o, "\x1B[33m", i);
-
 }
 
 static	void	ft_vis_end(char *ln, char *pl, int z, int o)
@@ -114,29 +116,23 @@ static	void	ft_vis_end(char *ln, char *pl, int z, int o)
 		put_res(pl, i, j, z);
 }
 
-int				main(void)
+int				main(int ac, char **av)
 {
 	char		*ln;
-	char		**hd;
 	char		*pl;
 	int			i;
+	int			j;
 
-	i = 0;
-	if (!(hd = (char **)malloc(sizeof(char *))))
-		return (0);
-	while (get_next_line(0, &ln))
-	{
-		if (*ln != '#')
-			break ;
-		hd[i++] = ft_strdup(ln);
-	}
-	hd[i] = 0;
-	free(ln);
+	if (ac > 1)
+		j = ft_atoi(av[1]);
+	i = 6;
+	while (i-- && get_next_line(0, &ln))
+		free(ln);
 	get_next_line(0, &ln);
 	pl = fil_players(ln, 23, 0, 0);
 	while (get_next_line(0, &ln) > 0)
 	{
-		ft_vis_map(ln, hd, pl, 0);
+		ft_vis_map(ln, pl, 0, j);
 		ft_vis_end(ln, pl, 0, 0);
 		free(ln);
 	}
