@@ -17,8 +17,9 @@
 
 ### without visual mode
 
-![without visual](https://thumbs.gfycat.com/LegalDownrightBighornedsheep-size_restricted.gif)
+![without visual](https://github.com/Dude-Rocker/filler/blob/master/examples/vgladuhs_vs_carli.gif)
 
 ### Visual
 
-![Visual](https://thumbs.gfycat.com/LegalDownrightBighornedsheep-size_restricted.gif)
+![Visual](https://github.com/Dude-Rocker/filler/blob/master/examples/grati_vs_vgladush.gif)
+![Visual](https://github.com/Dude-Rocker/filler/blob/master/examples/vgladush_vs_hcao.gif)
