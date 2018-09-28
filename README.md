@@ -1,4 +1,4 @@
-# filler
+# [filler](https://github.com/Dude-Rocker/resources/blob/master/filler/filler.pdf)
 ## The school 42 project of algorithms branch
 ### In this project you need to write your bot, which will play against other bots and try to win them.
 ### There is also a bonus visualization
@@ -17,9 +17,9 @@
 
 ### without visual mode
 
-![without visual](https://github.com/Dude-Rocker/filler/blob/master/examples/vgladuhs_vs_carli.gif)
+![without visual](https://github.com/Dude-Rocker/resources/blob/master/filler/vgladuhs_vs_carli.gif)
 
 ### Visual
 
-![Visual](https://github.com/Dude-Rocker/filler/blob/master/examples/grati_vs_vgladush.gif)
-![Visual](https://github.com/Dude-Rocker/filler/blob/master/examples/vgladush_vs_hcao.gif)
+![Visual](https://github.com/Dude-Rocker/resources/blob/master/filler/grati_vs_vgladush.gif)
+![Visual](https://github.com/Dude-Rocker/resources/blob/master/filler/vgladush_vs_hcao.gif)
