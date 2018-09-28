@@ -22,4 +22,5 @@
 ### Visual
 
 ![Visual](https://github.com/Dude-Rocker/resources/blob/master/filler/grati_vs_vgladush.gif)
+
 ![Visual](https://github.com/Dude-Rocker/resources/blob/master/filler/vgladush_vs_hcao.gif)
